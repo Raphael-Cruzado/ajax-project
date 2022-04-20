@@ -1,0 +1,49 @@
+.hidden {
+  display: none !important;
+}
+
+.container {
+  max-width: 575px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.no-wrap {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.column-full,
+.column-half {
+  width: 100%;
+}
+
+@media screen and (max-width: 1070px) {
+  .container {
+    max-width: 900px;
+  }
+
+  #rec-small {
+    padding-left: 50%;
+  }
+
+  #ing-small {
+    margin-right: 14%;
+    margin-left: 14%;
+  }
+
+  .column-full,
+  .column-half {
+    padding: 0 0.75rem;
+  }
+
+  .column-half {
+    width: 50%;
+  }
+}
