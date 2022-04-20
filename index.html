@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Proza+Libre:wght@500&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/6d4526dfb2.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
@@ -25,7 +26,10 @@
       <div data-view="entry-form" class="">
         <form action="" method="get">
           <div class="row" id="rec-small" style="max-width: 25rem; float: left;">
-            <input id="recipe-title" type="text" placeholder="Recipe Title">
+            <div class="no-wrap">
+              <input class="recipe-title" type="text" placeholder="Recipe Title">
+              <i class="fas fa-utensils"></i>
+            </div>
             <img src="images/placeholder.jpg" alt="image-placeholder">
             <input id="url-input" type="url" placeholder="Place photo URL here">
           </div>
@@ -45,9 +49,18 @@
             </div>
             <div class="ingredients">
               <ul>
-                <li>1 cups Barley</li>
-                <li>3 tbsp Kosher Salt</li>
-                <li>11 liters water</li>
+                <li>
+                  1 cups Barley
+                  <i class="fas fa-utensils"></i>
+                </li>
+                <li>
+                  3 tbsp Kosher Salt
+                  <i class="fas fa-utensils"></i>
+                </li>
+                <li>
+                  11 liters water
+                  <i class="fas fa-utensils"></i>
+                </li>
               </ul>
               <div>
                 <button id="submit-btn">Let's Cook!</button>

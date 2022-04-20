@@ -12,7 +12,7 @@ header:first-child {
   color: white;
 }
 
-#recipe-title {
+.recipe-title {
   border-style: none;
   font-size: xx-large;
   text-align: center;
@@ -21,7 +21,7 @@ header:first-child {
 }
 
 #url-input {
-  font-size: xx-large;
+  font-size: large;
   margin-top: 2rem;
 }
 
@@ -45,4 +45,35 @@ button {
   background-color: #e60000;
   color: white;
   font-size: 27px;
+}
+
+#submit-btn {
+  margin-left: 9px;
+}
+
+img {
+  border-radius: 5px;
+}
+
+i {
+  font-size: 30px;
+  color: #e60000;
+  padding-left: 5px;
+  padding-top: 4px;
+}
+
+i:first-child {
+  font-size: 20px;
+  padding-left: 5px;
+  padding-top: 4px;
+}
+
+ul {
+  padding: 15px;
+}
+
+li {
+  font-size: 20px;
+  list-style: none;
+  line-height: 2rem;
 }
