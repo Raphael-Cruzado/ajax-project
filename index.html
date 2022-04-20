@@ -27,17 +27,16 @@
         <form action="" method="get">
           <div class="row" id="rec-small" style="max-width: 25rem; float: left;">
             <div class="no-wrap">
-              <input class="recipe-title" type="text" placeholder="Recipe Title">
-              <i class="fas fa-utensils"></i>
+              <input required class="recipe-title" type="text" placeholder="Recipe Title">
             </div>
-            <img src="images/placeholder.jpg" alt="image-placeholder">
-            <input id="url-input" type="url" placeholder="Place photo URL here">
+            <img id="photo-display" src="images/placeholder.jpg" alt="image-placeholder">
+            <input required id="url-input" type="url" placeholder="Place photo URL here">
           </div>
 
           <div class="row no wrap" id="ing-small" style="float: right; max-width: 45rem;">
             <h2 style="font-size: xxx-large;">Ingredients:</h2>
             <div class="column-full" style="padding-left: 7rem;">
-              <input type="text" placeholder="add ingredient">
+              <input id="ingredient" type="text" placeholder="add ingredient">
               <input id="amount" type="text" placeholder="amount">
               <label for="measurements"></label>
               <select name="measurements" id="measurements">
@@ -47,7 +46,7 @@
                 <option value="tsp">tsp</option>
               </select>
             </div>
-            <div class="ingredients">
+            <div class="ingredient-list">
               <ul>
                 <li>
                   1 cups Barley

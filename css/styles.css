@@ -14,10 +14,10 @@ header:first-child {
 
 .recipe-title {
   border-style: none;
-  font-size: xx-large;
+  font-size: x-large;
   text-align: center;
   margin-bottom: 2rem;
-  max-width: 11rem;
+  width: fit-content;
 }
 
 #url-input {
@@ -55,14 +55,12 @@ img {
   border-radius: 7px;
 }
 
-i {
-  font-size: 30px;
-  color: #e60000;
-  padding-left: 5px;
-  padding-top: 4px;
+#photo-display {
+  width: 28rem;
 }
 
-i:first-child {
+i {
+  color: #e60000;
   font-size: 20px;
   padding-left: 5px;
   padding-top: 4px;

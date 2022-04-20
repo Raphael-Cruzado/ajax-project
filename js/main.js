@@ -1,3 +1,23 @@
+// create DOM tree for ingredients, once user completes ingredients prompt
+// submit button creates an index for the current ingredient list
+
+var $form = document.querySelector('form');
+var $recipeTitle = document.querySelector('.recipe-title');
+var $imageURL = document.querySelector('#url-input');
+var $imageDisplay = document.querySelector('#photo-display');
+
+$form.addEventListener('input', function (e) {
+  $imageDisplay.src = $imageURL.value;
+});
+
+$form.addEventListener('submit', function (e) {
+  if ($imageURL.getAttribute('placeholder') === 'Place photo URL here') {
+    $imageDisplay.src = 'images/placeholder.jpg';
+  } else {
+    $imageDisplay.src = $imageURL.value;
+  }
+});
+
 // <div class="ingredients">
 //   <ul>
 //     <li>
@@ -18,29 +38,34 @@
 //   </div>
 // </div>
 
-// get Recipe Title to append to page after user clicks away or presses enter
-// get URL to post something on the picture placeholder
-// create DOM tree for ingredients, once user completes ingredients prompt
-// submit button creates an index for the current ingredient list
+var $uList = document.querySelector('ul');
+var $listItem = document.querySelector('li');
+var $amount = document.querySelector('#amount');
+var $dropDown = document.querySelector('select');
+var $ingredient = document.querySelector('#ingredient');
+var $ingList = document.querySelector('.ingredient-list');
 
-var $form = document.querySelector('form');
-var $recipeTitle = document.querySelector('.recipe-title');
-var $photoURL = document.querySelector('.url-input');
-var $photoDisplay = document.querySelector('img');
-
-$photoURL.addEventListener('input', function (e) {
-  $photoDisplay.src = $photoURL.value;
-});
-
-$form.addEventListener('submit', function (e) {
-});
-
-// appends but page keeps on reloading
-$form.addEventListener('keyup', function (e) {
+$ingList.addEventListener('keyup', function (e) {
   e.preventDefault();
-  var recipeTitle = document.createElement('h1');
-  if (e.code === 'Enter') {
-    recipeTitle.innerHTML = $recipeTitle.value;
-    $recipeTitle.parentNode.replaceChild(recipeTitle, $recipeTitle);
+  var newObj = {};
+
+  newObj.listItem = $amount.value + $dropDown.value + $ingredient.value;
+
+  if (e.code === 13) {
+    $uList.appendChild(createIngredient(newObj));
   }
 });
+
+function createIngredient(entry) {
+  var icon = document.createElement('i');
+  var listItem = document.createElement('li');
+
+  listItem.innerText = entry.listItem;
+  $listItem.appendChild(document.createTextNode(listItem));
+
+  icon.setAttribute('class', 'fas fa-utensils');
+  $listItem.appendChild(icon);
+
+  $uList.appendChild($listItem);
+  return listItem;
+}
