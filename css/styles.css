@@ -2,7 +2,8 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+button {
   font-family: "Proza Libre", sans-serif;
 }
 
@@ -20,15 +21,28 @@ header:first-child {
 }
 
 #url-input {
+  font-size: xx-large;
   margin-top: 2rem;
 }
 
+#amount {
+  max-width: 8rem;
+}
+
 input {
-  font-size: xx-large;
+  font-size: x-large;
   text-align: center;
+  border-radius: 5px;
 }
 
 #measurements {
-  font-size: xx-large;
+  font-size: x-large;
   text-align: center;
+}
+
+button {
+  border-radius: 5px;
+  background-color: #e60000;
+  color: white;
+  font-size: 27px;
 }

@@ -24,23 +24,36 @@
     <div class="container" style="margin-top: 6rem; max-width: 73rem;">
       <div data-view="entry-form" class="">
         <form action="" method="get">
-          <div class="row" id="rec-small" style="max-width: 25rem; float: left; justify-content: center;">
+          <div class="row" id="rec-small" style="max-width: 25rem; float: left;">
             <input id="recipe-title" type="text" placeholder="Recipe Title">
             <img src="images/placeholder.jpg" alt="image-placeholder">
             <input id="url-input" type="url" placeholder="Place photo URL here">
           </div>
 
-          <div class="row no wrap" id="ing-small" style="float: right; max-width: 39rem;">
+          <div class="row no wrap" id="ing-small" style="float: right; max-width: 45rem;">
             <h2 style="font-size: xxx-large;">Ingredients:</h2>
-            <div class="column-full" style="padding-left: 4rem;">
+            <div class="column-full" style="padding-left: 7rem;">
               <input type="text" placeholder="add ingredient">
+              <input id="amount" type="text" placeholder="amount">
               <label for="measurements"></label>
               <select name="measurements" id="measurements">
                 <option value="grams">grams</option>
                 <option value="cups">cups</option>
-                <option value=""></option>
+                <option value="tbsp">tbsp</option>
+                <option value="tsp">tsp</option>
               </select>
             </div>
+            <div class="ingredients">
+              <ul>
+                <li>1 cups Barley</li>
+                <li>3 tbsp Kosher Salt</li>
+                <li>11 liters water</li>
+              </ul>
+              <div>
+                <button id="submit-btn">Let's Cook!</button>
+              </div>
+            </div>
+
           </div>
         </form>
       </div>
