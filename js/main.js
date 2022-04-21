@@ -3,10 +3,11 @@ var $imageURL = document.querySelector('#url-input');
 var $imageDisplay = document.querySelector('#photo-display');
 
 $form.addEventListener('input', function (e) {
-  if ($imageURL.value !== '') {
-    $imageDisplay.src = $imageURL.value;
-  } else {
+  if ($imageURL.value === '') {
     $imageDisplay.src = 'images/placeholder.jpg';
+  } else {
+    $imageDisplay.src = $imageURL.value;
+
   }
 
 });
@@ -20,12 +21,49 @@ var $addBtn = document.querySelector('#add-ing');
 var $icon = document.querySelector('i');
 var $recipeTitle = document.querySelector('.recipe-title');
 
-// submit button creates an index for the current ingredient list
-
 var newObj = {};
+var dataEntries = data.entries;
+
+// var data = {
+//   view: 'entry-form',
+//   entries: [],
+//   editing: null,
+//   nextEntryId: 1
+// };
+
+// when form is submitted, remove ingredient DOM tree
+// the ingredients prop in dataEntries should be an array
+// verify that new entries are saved onto local storage
 
 $form.addEventListener('submit', function (e) {
   e.preventDefault();
+  // console.log(e);
+  // console.log(e.target);
+  console.log(e.path[7].$form.childNodes[3].lastElementChild.firstElementChild.childNodes);
+
+  newObj.title = $recipeTitle.value;
+  newObj.url = $imageURL.value;
+  newObj.ingredients = $amount.value + ' ' + $dropDown.value + ' ' + $ingredient.value;
+  newObj.entryId = data.nextEntryId++;
+  dataEntries.push(newObj);
+
+  console.log(newObj);
+  console.log(data);
+  console.log(dataEntries);
+
+  if ($imageURL.value === '') {
+    $imageDisplay.src = 'images/placeholder.jpg';
+  } else {
+    $imageDisplay.src = $imageURL.value;
+  }
+
+  var listNodes = e.path[7].$form.childNodes[3].lastElementChild.firstElementChild.childNodes;
+  var arrayList = Array.prototype.slice.call(listNodes);
+  for (let i = 0; i < arrayList.length; i++) {
+    arrayList[i].remove();
+  }
+  $form.reset();
+
 });
 
 $addBtn.addEventListener('click', function (e) {
