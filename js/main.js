@@ -43,6 +43,7 @@ var $amount = document.querySelector('#amount');
 var $dropDown = document.querySelector('select');
 var $ingredient = document.querySelector('#ingredient');
 var $addBtn = document.querySelector('#add-ing');
+var $icon = document.querySelector('i');
 
 var newObj = {};
 
@@ -56,17 +57,24 @@ $addBtn.addEventListener('click', function (e) {
   $uList.appendChild(createIngredient(newObj));
 });
 
+$uList.addEventListener('click', function (e) {
+  console.log(e);
+  console.log(e.path[1]);
+  console.log(e.path[1].innerText);
+
+  if (e.path[1].innerText !== '') {
+    e.path[1].remove();
+  }
+});
+
 function createIngredient(entry) {
   var listItem = document.createElement('li');
   var listText = document.createTextNode(entry.listItem);
   var icon = document.createElement('i');
 
   listItem.setAttribute('data-entry-id', entry.entryId);
-
   listItem.appendChild(listText);
-
   icon.setAttribute('class', 'fas fa-utensils');
   listItem.appendChild(icon);
-
   return listItem;
 }
