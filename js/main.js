@@ -58,11 +58,11 @@ $addBtn.addEventListener('click', function (e) {
 });
 
 $uList.addEventListener('click', function (e) {
-  console.log(e);
+  console.log(e.target);
   console.log(e.path[1]);
   console.log(e.path[1].innerText);
 
-  if (e.path[1].innerText !== '') {
+  if (e.target.className === 'fas fa-utensils' && e.path[1].innerText !== '') {
     e.path[1].remove();
   }
 });
