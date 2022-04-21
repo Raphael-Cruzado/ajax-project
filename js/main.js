@@ -40,8 +40,10 @@ $form.addEventListener('submit', function (e) {
   var listNodes = e.path[7].$form.childNodes[3].lastElementChild.firstElementChild.childNodes;
   var arrayList = Array.prototype.slice.call(listNodes);
 
+  newObj.entryId = data.nextEntryId;
   newObj.title = $recipeTitle.value;
   newObj.url = $imageURL.value;
+  delete data.entries.listItem;
   newObj.ingredients = [];
   for (let i = 1; i < arrayList.length; i++) {
     newObj.ingredients.push(arrayList[i].innerText);
