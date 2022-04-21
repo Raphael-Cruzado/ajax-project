@@ -32,7 +32,6 @@ var dataEntries = data.entries;
 //   nextEntryId: 1
 // };
 
-// the ingredients prop in dataEntries should be an array
 // verify that new entries are saved onto local storage
 
 $form.addEventListener('submit', function (e) {
@@ -50,10 +49,7 @@ $form.addEventListener('submit', function (e) {
   newObj.entryId = data.nextEntryId++;
   dataEntries.push(newObj);
 
-  console.log(newObj);
   console.log(data);
-  console.log(dataEntries);
-  console.log(arrayList.innerText);
 
   if ($imageURL.value === '') {
     $imageDisplay.src = 'images/placeholder.jpg';
