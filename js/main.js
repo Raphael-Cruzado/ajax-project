@@ -1,4 +1,3 @@
-// create DOM tree for ingredients, once user completes ingredients prompt
 // submit button creates an index for the current ingredient list
 
 var $form = document.querySelector('form');
@@ -43,29 +42,31 @@ var $listItem = document.querySelector('li');
 var $amount = document.querySelector('#amount');
 var $dropDown = document.querySelector('select');
 var $ingredient = document.querySelector('#ingredient');
-var $ingList = document.querySelector('.ingredient-list');
+var $addBtn = document.querySelector('#add-ing');
 
-$ingList.addEventListener('keyup', function (e) {
+var newObj = {};
+
+$form.addEventListener('submit', function (e) {
   e.preventDefault();
-  var newObj = {};
+});
 
-  newObj.listItem = $amount.value + $dropDown.value + $ingredient.value;
-
-  if (e.code === 13) {
-    $uList.appendChild(createIngredient(newObj));
-  }
+$addBtn.addEventListener('click', function (e) {
+  newObj.listItem = $amount.value + ' ' + $dropDown.value + ' ' + $ingredient.value;
+  console.log(newObj);
+  $uList.appendChild(createIngredient(newObj));
 });
 
 function createIngredient(entry) {
-  var icon = document.createElement('i');
   var listItem = document.createElement('li');
+  var listText = document.createTextNode(entry.listItem);
+  var icon = document.createElement('i');
 
-  listItem.innerText = entry.listItem;
-  $listItem.appendChild(document.createTextNode(listItem));
+  listItem.setAttribute('data-entry-id', entry.entryId);
+
+  listItem.appendChild(listText);
 
   icon.setAttribute('class', 'fas fa-utensils');
-  $listItem.appendChild(icon);
+  listItem.appendChild(icon);
 
-  $uList.appendChild($listItem);
   return listItem;
 }
