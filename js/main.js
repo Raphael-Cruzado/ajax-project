@@ -20,6 +20,7 @@ var $ingredient = document.querySelector('#ingredient');
 var $addBtn = document.querySelector('#add-ing');
 var $icon = document.querySelector('i');
 var $recipeTitle = document.querySelector('.recipe-title');
+var $listNodes = document.querySelectorAll('li');
 
 var newObj = {};
 var dataEntries = data.entries;
@@ -31,25 +32,28 @@ var dataEntries = data.entries;
 //   nextEntryId: 1
 // };
 
-// when form is submitted, remove ingredient DOM tree
 // the ingredients prop in dataEntries should be an array
 // verify that new entries are saved onto local storage
 
 $form.addEventListener('submit', function (e) {
   e.preventDefault();
-  // console.log(e);
-  // console.log(e.target);
-  console.log(e.path[7].$form.childNodes[3].lastElementChild.firstElementChild.childNodes);
+
+  var listNodes = e.path[7].$form.childNodes[3].lastElementChild.firstElementChild.childNodes;
+  var arrayList = Array.prototype.slice.call(listNodes);
 
   newObj.title = $recipeTitle.value;
   newObj.url = $imageURL.value;
-  newObj.ingredients = $amount.value + ' ' + $dropDown.value + ' ' + $ingredient.value;
+  newObj.ingredients = [];
+  for (let i = 1; i < arrayList.length; i++) {
+    newObj.ingredients.push(arrayList[i].innerText);
+  }
   newObj.entryId = data.nextEntryId++;
   dataEntries.push(newObj);
 
   console.log(newObj);
   console.log(data);
   console.log(dataEntries);
+  console.log(arrayList.innerText);
 
   if ($imageURL.value === '') {
     $imageDisplay.src = 'images/placeholder.jpg';
@@ -57,13 +61,10 @@ $form.addEventListener('submit', function (e) {
     $imageDisplay.src = $imageURL.value;
   }
 
-  var listNodes = e.path[7].$form.childNodes[3].lastElementChild.firstElementChild.childNodes;
-  var arrayList = Array.prototype.slice.call(listNodes);
   for (let i = 0; i < arrayList.length; i++) {
     arrayList[i].remove();
   }
   $form.reset();
-
 });
 
 $addBtn.addEventListener('click', function (e) {
