@@ -1,6 +1,6 @@
 var $form = document.querySelector('form');
 var $imageURL = document.querySelector('#url-input');
-var $imageDisplay = document.querySelector('#photo-display');
+var $imageDisplay = document.querySelector('.photo-display');
 
 $form.addEventListener('input', function (e) {
   if ($imageURL.value === '') {
@@ -51,7 +51,7 @@ $form.addEventListener('submit', function (e) {
   newObj.entryId = data.nextEntryId++;
   dataEntries.push(newObj);
 
-  console.log(data);
+  console.log(dataEntries.length - 1);
 
   if ($imageURL.value === '') {
     $imageDisplay.src = 'images/placeholder.jpg';
@@ -71,6 +71,7 @@ $addBtn.addEventListener('click', function (e) {
   $uList.appendChild(createIngredient(newObj));
 });
 
+// when user deletes list, it doesn't get added to dataEntries, handle that later **
 $uList.addEventListener('click', function (e) {
   if (e.target.className === 'fas fa-utensils' && e.path[1].innerText !== '') {
     e.path[1].remove();
@@ -88,3 +89,27 @@ function createIngredient(entry) {
   listItem.appendChild(icon);
   return listItem;
 }
+
+// <div class="row">
+//   <ul class="entries-list">
+//     <li class="column-half">
+//       <h5>Lasagna</h5>
+//       <img class="photo-entries" src="images/placeholder.jpg" alt="image-placeholder">
+//         <i class="fas fa-utensils"></i>
+//     </li>
+//     <li class="column-half">
+//       <h5>Lasagna</h5>
+//       <img class="photo-entries" src="images/placeholder.jpg" alt="image-placeholder">
+//         <i class="fas fa-utensils move-top"></i>
+//     </li>
+//     <li class="column-half" >
+//       <h5>Lasagna</h5>
+//       <img class="photo-entries" src="images/placeholder.jpg" alt="image-placeholder">
+//         <i class="fas fa-utensils"></i>
+//     </li>
+//     <li class="column-half">
+//       <h5>Lasagna</h5>
+//       <img class="photo-entries" src="images/placeholder.jpg" alt="image-placeholder">
+//         <i class="fas fa-utensils"></i>
+//     </li>
+//   </ul>

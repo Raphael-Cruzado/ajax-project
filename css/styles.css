@@ -60,7 +60,7 @@ img {
   border-radius: 7px;
 }
 
-#photo-display {
+.photo-display {
   width: 28rem;
 }
 
@@ -79,4 +79,19 @@ li {
   font-size: 20px;
   list-style: none;
   line-height: 2rem;
+}
+
+/* it still does not fit 3 in a row, but works for 2 */
+
+.entries-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 0;
+}
+
+.entries-list li {
+  list-style: none;
+  flex: 0 0 33.3333%;
+  text-align: center;
 }
