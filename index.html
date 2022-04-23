@@ -23,9 +23,9 @@
   </header>
   <main>
     <div class="container" style="margin-top: 6rem; max-width: 73rem;">
-      <div data-view="entry-form" class="">
+      <div data-view="entry-form" class="hidden">
         <form action="" method="get">
-          <div class="row" id="rec-small" style="max-width: 25rem; float: left;">
+          <div class="row" style="max-width: 25rem; float: left;">
             <div class="no-wrap">
               <input required class="recipe-title" type="text" placeholder="Recipe Title">
             </div>
@@ -33,7 +33,7 @@
             <input required id="url-input" type="url" placeholder="Place photo URL here">
           </div>
 
-          <div class="row no wrap" id="ing-small" style="float: right; max-width: 45rem;">
+          <div class="row no wrap" style="float: right; max-width: 45rem;">
             <h2 style="font-size: xxx-large;">Ingredients:</h2>
             <div class="column-full" style="padding-left: 7rem;">
               <input id="ingredient" type="text" placeholder="add ingredient">
@@ -64,6 +64,28 @@
         <div class="row">
           <ul class="entries-list">
           </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="margin-top: 6rem; max-width: 73rem;">
+      <div data-view="entry" class="">
+        <div class="row" style="max-width: 25rem; float: left;">
+          <div class="no-wrap">
+            <h4>Food Item</h4>
+          </div>
+          <img class="photo-display" src="images/placeholder.jpg" alt="image-placeholder">
+        </div>
+
+        <div class="row no wrap" style="float: right; max-width: 45rem;">
+          <h2 style="font-size: xxx-large;">Ingredients:</h2>
+          <div class="row">
+            <ul class="ingredient-list">
+              <li>5 cups of Sugar</li>
+              <li>5 cups of Sugar</li>
+              <li>5 cups of Sugar</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
