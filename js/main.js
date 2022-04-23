@@ -7,43 +7,31 @@ $form.addEventListener('input', function (e) {
     $imageDisplay.src = 'images/placeholder.jpg';
   } else {
     $imageDisplay.src = $imageURL.value;
-
   }
-
 });
 
 var $uList = document.querySelector('ul');
-var $listItem = document.querySelector('li');
 var $amount = document.querySelector('#amount');
 var $dropDown = document.querySelector('select');
 var $ingredient = document.querySelector('#ingredient');
 var $addBtn = document.querySelector('#add-ing');
-var $icon = document.querySelector('i');
 var $recipeTitle = document.querySelector('.recipe-title');
-var $listNodes = document.querySelectorAll('li');
+var $entriesUl = document.querySelector('.entries-list');
+var $viewForm = document.querySelector("[data-view='entry-form']");
+var $viewEntries = document.querySelector("[data-view='entries']");
+var $photoEntries = document.querySelector('.photo-entries');
 
-var newObj = {};
 var dataEntries = data.entries;
-
-// var data = {
-//   view: 'entry-form',
-//   entries: [],
-//   editing: null,
-//   nextEntryId: 1
-// };
-
-// verify that new entries are saved onto local storage
 
 $form.addEventListener('submit', function (e) {
   e.preventDefault();
-
+  var newObj = {};
   var listNodes = e.path[7].$form.childNodes[3].lastElementChild.firstElementChild.childNodes;
   var arrayList = Array.prototype.slice.call(listNodes);
 
   newObj.entryId = data.nextEntryId;
   newObj.title = $recipeTitle.value;
   newObj.url = $imageURL.value;
-  delete data.entries.listItem;
   newObj.ingredients = [];
   for (let i = 1; i < arrayList.length; i++) {
     newObj.ingredients.push(arrayList[i].innerText);
@@ -51,7 +39,10 @@ $form.addEventListener('submit', function (e) {
   newObj.entryId = data.nextEntryId++;
   dataEntries.push(newObj);
 
-  console.log(dataEntries.length - 1);
+  $entriesUl.prepend(addEntry(newObj));
+  console.log(addEntry(newObj));
+
+  $form.reset();
 
   if ($imageURL.value === '') {
     $imageDisplay.src = 'images/placeholder.jpg';
@@ -62,20 +53,7 @@ $form.addEventListener('submit', function (e) {
   for (let i = 0; i < arrayList.length; i++) {
     arrayList[i].remove();
   }
-  $form.reset();
-});
 
-$addBtn.addEventListener('click', function (e) {
-  newObj.listItem = $amount.value + ' ' + $dropDown.value + ' ' + $ingredient.value;
-  // console.log(newObj);
-  $uList.appendChild(createIngredient(newObj));
-});
-
-// when user deletes list, it doesn't get added to dataEntries, handle that later **
-$uList.addEventListener('click', function (e) {
-  if (e.target.className === 'fas fa-utensils' && e.path[1].innerText !== '') {
-    e.path[1].remove();
-  }
 });
 
 function createIngredient(entry) {
@@ -90,26 +68,70 @@ function createIngredient(entry) {
   return listItem;
 }
 
-// <div class="row">
-//   <ul class="entries-list">
-//     <li class="column-half">
-//       <h5>Lasagna</h5>
-//       <img class="photo-entries" src="images/placeholder.jpg" alt="image-placeholder">
-//         <i class="fas fa-utensils"></i>
-//     </li>
-//     <li class="column-half">
-//       <h5>Lasagna</h5>
-//       <img class="photo-entries" src="images/placeholder.jpg" alt="image-placeholder">
-//         <i class="fas fa-utensils move-top"></i>
-//     </li>
-//     <li class="column-half" >
-//       <h5>Lasagna</h5>
-//       <img class="photo-entries" src="images/placeholder.jpg" alt="image-placeholder">
-//         <i class="fas fa-utensils"></i>
-//     </li>
-//     <li class="column-half">
-//       <h5>Lasagna</h5>
-//       <img class="photo-entries" src="images/placeholder.jpg" alt="image-placeholder">
-//         <i class="fas fa-utensils"></i>
-//     </li>
-//   </ul>
+function addEntry(entry) {
+  var entryLi = document.createElement('li');
+  var entryHeading = document.createElement('h4');
+  var headingText = document.createTextNode(entry.title);
+  var entryImg = document.createElement('img');
+  var icon = document.createElement('i');
+
+  entryLi.setAttribute('class', 'column-half');
+
+  entryHeading.style.marginBottom = '5px';
+  entryHeading.setAttribute('class', 'no wrap');
+  entryHeading.appendChild(headingText);
+  entryLi.appendChild(entryHeading);
+
+  entryImg.setAttribute('class', 'photo-entries');
+  entryImg.setAttribute('src', entry.url);
+  entryImg.setAttribute('alt', 'image-placeholder');
+  entryLi.appendChild(entryImg);
+
+  icon.setAttribute('class', 'fas fa-utensils');
+  entryLi.appendChild(icon);
+
+  return entryLi;
+}
+
+window.addEventListener('DOMContentLoaded', function (e) {
+  for (let i = 0; i < dataEntries.length; i++) {
+    var newEntry = addEntry(dataEntries[i]);
+    $entriesUl.prepend(newEntry);
+  }
+});
+
+var $navBar = document.querySelector('#heading');
+$navBar.addEventListener('click', function (e) {
+  if ($viewEntries.className === 'hidden') {
+    $viewForm.className = 'hidden';
+    $viewEntries.className = '';
+  } else {
+    $viewForm.className = '';
+    $viewEntries.className = 'hidden';
+  }
+});
+
+var $submitBtn = document.querySelector('#submit-btn');
+$submitBtn.addEventListener('click', function (e) {
+  if ($imageURL.value === '') {
+    $imageDisplay.src = 'images/placeholder-image-square.jpg';
+  } else {
+    $viewForm.className = 'hidden';
+    $viewEntries.className = '';
+  }
+});
+
+$addBtn.addEventListener('click', function (entry) {
+  entry.listItem = $amount.value + ' ' + $dropDown.value + ' ' + $ingredient.value;
+  $uList.appendChild(createIngredient(entry));
+});
+
+// when user deletes a list and adds another entry, the after inputs doesn't get added to dataEntries, handle that later **
+$uList.addEventListener('click', function (e) {
+  if (e.target.className === 'fas fa-utensils' && e.path[1].innerText !== '') {
+    e.path[1].remove();
+  }
+});
+
+// create view page
+// during entries page, when user clicks image takes them to viewing page.
