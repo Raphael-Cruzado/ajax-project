@@ -30,17 +30,9 @@
 }
 
 @media screen and (max-width: 1150px) {
-  .container {
+  .container,
+  .container-view {
     max-width: 900px;
-  }
-
-  #rec-small {
-    padding-left: 50%;
-  }
-
-  #ing-small {
-    margin-right: 14%;
-    margin-left: 14%;
   }
 
   .column-full,
