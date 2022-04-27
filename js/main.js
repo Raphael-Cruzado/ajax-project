@@ -107,7 +107,8 @@ $navBar.addEventListener('click', function (e) {
     $viewEntries.className = '';
   } else if ($viewPage.className === 'container-view') {
     $viewPage.className = 'container-view hidden';
-    $viewForm.className = '';
+    $viewEntries.className = '';
+    $viewForm.className = 'hidden';
   } else {
     $viewForm.className = '';
     $viewEntries.className = 'hidden';
@@ -169,7 +170,9 @@ var $entryPage = document.querySelector('.container-entries');
 $entriesUl.addEventListener('click', function (e) {
   console.log(e);
   console.log(e.path[0]);
-  if (e.path[0] !== undefined) {
+  console.log(e.path[0].childNodes);
+
+  if (e.path[0].childNodes[1] !== undefined) {
     $viewPage.className = 'container-view';
     $entryPage.className = 'container-entries hidden';
   } else {
