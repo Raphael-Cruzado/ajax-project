@@ -105,6 +105,9 @@ $navBar.addEventListener('click', function (e) {
   if ($viewEntries.className === 'hidden') {
     $viewForm.className = 'hidden';
     $viewEntries.className = '';
+  } else if ($viewPage.className === 'container-view') {
+    $viewPage.className = 'container-view hidden';
+    $viewForm.className = '';
   } else {
     $viewForm.className = '';
     $viewEntries.className = 'hidden';
@@ -160,6 +163,20 @@ var $viewTitle = document.querySelector('.recipe-view');
 var $ingView = document.querySelector('.ingredients-view');
 var $imgView = document.querySelector('.img-view');
 var nutrFacts = document.querySelector('.nutrition-facts');
+var $viewPage = document.querySelector('.container-view');
+var $entryPage = document.querySelector('.container-entries');
+
+$entriesUl.addEventListener('click', function (e) {
+  console.log(e);
+  console.log(e.path[0]);
+  if (e.path[0] !== undefined) {
+    $viewPage.className = 'container-view';
+    $entryPage.className = 'container-entries hidden';
+  } else {
+    $viewPage.className = 'container-view hidden';
+    $entryPage.className = 'container-entries';
+  }
+});
 
 function createView(entry) {
 
