@@ -75,7 +75,7 @@ function addEntry(entry) {
   var entryImg = document.createElement('img');
   var icon = document.createElement('i');
 
-  entryLi.setAttribute('class', 'column-half');
+  entryLi.setAttribute('class', 'row-view');
 
   entryHeading.style.marginBottom = '5px';
   entryHeading.setAttribute('class', 'no wrap');
@@ -135,3 +135,32 @@ $uList.addEventListener('click', function (e) {
 
 // create view page
 // during entries page, when user clicks image takes them to viewing page.
+
+// ENTRY DOM TREE
+// <div class="container-view" style="margin-top: 6rem; max-width: 73rem;">
+//   <div class="row-view">
+//     <h1>Recipe Title</h3>
+//     <img class="photo-display" src="images/placeholder.jpg" alt="image-placeholder">
+//       <h2 style="font-size: xx-large; margin-bottom: -1rem">Ingredients:</h2>
+//       <ul>
+//         <li>5 grams cracker</li>
+//         <li>10 lbs beef</li>
+//       </ul>
+//   </div>
+//   <div class="row-view">
+//     <h4 style="font-size: xx-large; margin-bottom: -1rem">Nutrition Facts</h4>
+//     <ul>
+//       <li>Carbohydrates: 5g</li>
+//       <li>Trans Fat: 10g</li>
+//     </ul>
+//   </div>
+// </div>
+
+var $viewTitle = document.querySelector('.recipe-view');
+var $ingView = document.querySelector('.ingredients-view');
+var $imgView = document.querySelector('.img-view');
+var nutrFacts = document.querySelector('.nutrition-facts');
+
+function createView(entry) {
+
+}

@@ -23,7 +23,7 @@
   </header>
   <main>
     <div class="container" style="margin-top: 6rem; max-width: 73rem;">
-      <div data-view="entry-form" class="hidden">
+      <div data-view="entry-form" class="">
         <form action="" method="get">
           <div class="row" style="max-width: 25rem; float: left;">
             <div class="no-wrap">
@@ -59,30 +59,25 @@
       </div>
     </div>
 
-    <div class="container">
-      <div data-view="entries" class="hidden">
-        <div class="row">
-          <ul class="entries-list">
-          </ul>
-        </div>
-      </div>
+    <div class="container-view hidden" data-view="entries">
+      <ul class="entries-list">
+      </ul>
     </div>
 
-    <div class="container-view" style="margin-top: 6rem; max-width: 73rem;">
+    <div class="container-view hidden" data-view="view-entry" style="margin-top: 6rem; max-width: 73rem;">
       <div class="row-view">
-        <h1>Recipe Title</h3>
-        <img class="photo-display" src="images/placeholder.jpg" alt="image-placeholder">
+        <h1 class="recipe-view"></h1>
+        <img class="img-view" src="images/placeholder.jpg" alt="image-placeholder">
         <h2 style="font-size: xx-large; margin-bottom: -1rem">Ingredients:</h2>
-        <ul>
-          <li>5 grams cracker</li>
-          <li>10 lbs beef</li>
+        <ul class="ingredients-view">
         </ul>
       </div>
       <div class="row-view">
         <h4 style="font-size: xx-large; margin-bottom: -1rem">Nutrition Facts</h4>
-        <ul>
-          <li>Carbohydrates: 5g</li>
-          <li>Trans Fat: 10g</li>
+        <ul class="nutrition-facts">
+          <li id="Carbohydrates"></li>
+          <li id="Fat"></li>
+          <li id="Sugar"></li>
         </ul>
       </div>
     </div>

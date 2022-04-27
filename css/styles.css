@@ -85,14 +85,16 @@ li {
 
 .entries-list {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  padding-left: 0;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-basis: (100% / 3);
 }
 
 .entries-list li {
+  display: flex;
+  flex-direction: column;
   list-style: none;
-  flex: 0 0 33.3333%;
   text-align: center;
 }
 
