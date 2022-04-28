@@ -81,8 +81,6 @@ li {
   line-height: 2rem;
 }
 
-/* it still does not fit 3 in a row, but works for 2 wen minimized */
-
 .entries-list {
   display: flex;
   flex-wrap: wrap;

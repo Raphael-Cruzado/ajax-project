@@ -170,9 +170,9 @@ var $entryPage = document.querySelector('.container-entries');
 $entriesUl.addEventListener('click', function (e) {
   console.log(e);
   console.log(e.path[0]);
-  console.log(e.path[0].childNodes);
+  console.log(e.path[0].className);
 
-  if (e.path[0].childNodes[1] !== undefined) {
+  if (e.path[0].className === 'photo-entries') {
     $viewPage.className = 'container-view';
     $entryPage.className = 'container-entries hidden';
   } else {
