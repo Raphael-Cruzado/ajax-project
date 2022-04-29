@@ -137,8 +137,31 @@ $uList.addEventListener('click', function (e) {
   }
 });
 
-// create view page
-// during entries page, when user clicks image takes them to viewing page.
+var $viewTitle = document.querySelector('.recipe-view');
+var $ingView = document.querySelector('.ingredients-view');
+var $imgView = document.querySelector('.img-view');
+var nutrFacts = document.querySelector('.nutrition-facts');
+var $viewPage = document.querySelector('.container-view');
+var $entryPage = document.querySelector('.container-entries');
+
+$entriesUl.addEventListener('click', function (e) {
+  console.log(e);
+  console.log(e.path[0]);
+  console.log(e.path[0].className);
+  var entry = {};
+
+  if (e.path[0].className === 'photo-entries') {
+    $viewPage.className = 'container-view';
+    $entryPage.className = 'container-entries hidden';
+  } else {
+    $viewPage.className = 'container-view hidden';
+    $entryPage.className = 'container-entries';
+  }
+});
+
+// fix entry view page (center it)
+// start creating the function
+// fix the local storage when u delete something and it doesn't log it in
 
 // ENTRY DOM TREE
 // <div class="container-view" style="margin-top: 6rem; max-width: 73rem;">
@@ -160,27 +183,7 @@ $uList.addEventListener('click', function (e) {
 //   </div>
 // </div>
 
-var $viewTitle = document.querySelector('.recipe-view');
-var $ingView = document.querySelector('.ingredients-view');
-var $imgView = document.querySelector('.img-view');
-var nutrFacts = document.querySelector('.nutrition-facts');
-var $viewPage = document.querySelector('.container-view');
-var $entryPage = document.querySelector('.container-entries');
-
-$entriesUl.addEventListener('click', function (e) {
-  console.log(e);
-  console.log(e.path[0]);
-  console.log(e.path[0].className);
-
-  if (e.path[0].className === 'photo-entries') {
-    $viewPage.className = 'container-view';
-    $entryPage.className = 'container-entries hidden';
-  } else {
-    $viewPage.className = 'container-view hidden';
-    $entryPage.className = 'container-entries';
-  }
-});
-
 function createView(entry) {
-
+  var imgView = document.createElement('img');
+  var titleView = document.createElement('h1');
 }
