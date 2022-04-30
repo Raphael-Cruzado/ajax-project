@@ -147,10 +147,13 @@ var $entryPage = document.querySelector('.container-entries');
 $entriesUl.addEventListener('click', function (e) {
   console.log(e);
   console.log(e.path[0]);
-  console.log(e.path[1].children); // Title text
+  console.log(e.path[1].children);
   var entryTitle = e.path[1].children[0].innerText;
   var entryImg = e.path[1].children[1].getAttribute('src');
+
+  // now I have to get the list data from the data.entries.ingredients storage
   // var entryList =
+
   var entryObj = {};
 
   entryObj.title = entryTitle;
@@ -209,5 +212,5 @@ function createView(entry) {
 
   titleView.appendChild(titleViewCont);
   $entryView.prepend(titleView);
-
 }
+// fuck, the next entry PREPENDS the next clicked entry... try refresh;
