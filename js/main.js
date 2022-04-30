@@ -147,8 +147,16 @@ var $entryPage = document.querySelector('.container-entries');
 $entriesUl.addEventListener('click', function (e) {
   console.log(e);
   console.log(e.path[0]);
-  console.log(e.path[0].className);
-  var entry = {};
+  console.log(e.path[1].children); // Title text
+  var entryTitle = e.path[1].children[0].innerText;
+  var entryImg = e.path[1].children[1].getAttribute('src');
+  // var entryList =
+  var entryObj = {};
+
+  entryObj.title = entryTitle;
+  entryObj.img = entryImg;
+
+  createView(entryObj);
 
   if (e.path[0].className === 'photo-entries') {
     $viewPage.className = 'container-view';
@@ -165,25 +173,41 @@ $entriesUl.addEventListener('click', function (e) {
 
 // ENTRY DOM TREE
 // <div class="container-view" style="margin-top: 6rem; max-width: 73rem;">
-//   <div class="row-view">
-//     <h1>Recipe Title</h3>
-//     <img class="photo-display" src="images/placeholder.jpg" alt="image-placeholder">
+//   <div id="row-view-1" class="row-view">
+//     <h1>Recipe Title</h1>
+//     <img class="img-view" src="images/placeholder.jpg" alt="image-placeholder">
 //       <h2 style="font-size: xx-large; margin-bottom: -1rem">Ingredients:</h2>
-//       <ul>
+//       <ul class="ingredients-view">
 //         <li>5 grams cracker</li>
 //         <li>10 lbs beef</li>
 //       </ul>
 //   </div>
-//   <div class="row-view">
+//   <div id="row-view-2" class="row-view">
 //     <h4 style="font-size: xx-large; margin-bottom: -1rem">Nutrition Facts</h4>
-//     <ul>
+//     <ul class="nutrition-facts">
 //       <li>Carbohydrates: 5g</li>
 //       <li>Trans Fat: 10g</li>
 //     </ul>
 //   </div>
 // </div>
 
+var $viewTitle = document.querySelector('.recipe-view');
+var $imgView = document.querySelector('.img-view');
+var $nutrFactsUl = document.querySelector('.nutrition-facts');
+var $entryView = document.querySelector('#row-view-1');
+
 function createView(entry) {
-  var imgView = document.createElement('img');
   var titleView = document.createElement('h1');
+  var titleViewCont = document.createTextNode(entry.title);
+  var imgView = document.createElement('img');
+  var ingrView = document.createElement('li');
+
+  imgView.className = 'img-view';
+  imgView.setAttribute('src', entry.img);
+  imgView.setAttribute('alt', 'image-placeholder');
+  $entryView.prepend(imgView);
+
+  titleView.appendChild(titleViewCont);
+  $entryView.prepend(titleView);
+
 }
