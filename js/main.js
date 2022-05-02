@@ -113,6 +113,7 @@ $navBar.addEventListener('click', function (e) {
     $viewForm.className = '';
     $viewEntries.className = 'hidden';
   }
+
 });
 
 var $submitBtn = document.querySelector('#submit-btn');
@@ -145,9 +146,15 @@ var $viewPage = document.querySelector('.container-view');
 var $entryPage = document.querySelector('.container-entries');
 
 $entriesUl.addEventListener('click', function (e) {
-  console.log(e);
-  console.log(e.path[0]);
-  console.log(e.path[1].children);
+  for (let i = 0; i < dataEntries.length; i++) {
+    if (e.path[1].children[0].innerText === dataEntries[i].title) {
+      console.log(dataEntries[i].title);
+      console.log(dataEntries[i].entryId);
+    }
+  }
+  // console.log(e);
+  // console.log(e.path[0]);
+  // console.log(e.path[1].children);
   var entryTitle = e.path[1].children[0].innerText;
   var entryImg = e.path[1].children[1].getAttribute('src');
 
@@ -160,6 +167,11 @@ $entriesUl.addEventListener('click', function (e) {
   entryObj.img = entryImg;
 
   createView(entryObj);
+
+  if ($viewForm === 'hidden' && $viewEntries === 'hidden') {
+    $imgView.remove();
+    $viewTitle.remove();
+  }
 
   if (e.path[0].className === 'photo-entries') {
     $viewPage.className = 'container-view';
@@ -198,6 +210,7 @@ var $viewTitle = document.querySelector('.recipe-view');
 var $imgView = document.querySelector('.img-view');
 var $nutrFactsUl = document.querySelector('.nutrition-facts');
 var $entryView = document.querySelector('#row-view-1');
+var $firstRow = document.querySelector('container-view');
 
 function createView(entry) {
   var titleView = document.createElement('h1');
@@ -213,4 +226,4 @@ function createView(entry) {
   titleView.appendChild(titleViewCont);
   $entryView.prepend(titleView);
 }
-// fuck, the next entry PREPENDS the next clicked entry... try refresh;
+// fuck, the next entry PREPENDS the next clicked entry too... i could use splice
