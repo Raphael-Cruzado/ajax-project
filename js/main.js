@@ -148,19 +148,18 @@ var $entryPage = document.querySelector('.container-entries');
 $entriesUl.addEventListener('click', function (e) {
   var entryObj = {};
   entryObj.ingredients = [];
+
   for (let i = 0; i < dataEntries.length; i++) {
     if (e.path[1].children[0].innerText === dataEntries[i].title) {
-      // console.log(dataEntries[i]);
       entryObj.title = dataEntries[i].title;
       entryObj.img = dataEntries[i].url;
       for (let i = 0; i < dataEntries[i].ingredients.length; i++) {
         entryObj.ingredients.push(dataEntries[i].ingredients[i]);
-        console.log(entryObj.ingredients);
       }
     }
   }
 
-  console.log(entryObj);
+  console.log(entryObj.ingredients);
   createView(entryObj);
 
   if ($viewForm === 'hidden' && $viewEntries === 'hidden') {
@@ -206,13 +205,12 @@ var $imgView = document.querySelector('.img-view');
 var $nutrFactsUl = document.querySelector('.nutrition-facts');
 var $entryView = document.querySelector('#row-view-1');
 var $firstRow = document.querySelector('container-view');
-var $ingrLi = document.querySelector('.ingredients-view');
+var $ingrUl = document.querySelector('.ingredients-view');
 
 function createView(entry) {
   var titleView = document.createElement('h1');
   var titleViewCont = document.createTextNode(entry.title);
   var imgView = document.createElement('img');
-  var ingrView = document.createElement('li');
 
   imgView.className = 'img-view';
   imgView.setAttribute('src', entry.img);
@@ -223,10 +221,12 @@ function createView(entry) {
   $entryView.prepend(titleView);
 
   for (let i = 0; i < entry.ingredients.length; i++) {
-    $ingrLi.appendChild(entry.ingredients[i]);
-
+    var ingrItems = document.createTextNode(entry.ingredients[i]);
+    console.log(ingrItems);
+    var ingrView = document.createElement('li');
+    ingrView.appendChild(ingrItems);
+    $ingrUl.appendChild(ingrView);
   }
-  $nutrFactsUl.appendChild($ingrLi);
-
 }
-// fuck, the next entry PREPENDS the next clicked entry too... i could use splice
+
+// dam, the next entry PREPENDS the next clicked entry too wen I return to the entry pg... i could use splice
