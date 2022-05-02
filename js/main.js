@@ -40,7 +40,6 @@ $form.addEventListener('submit', function (e) {
   dataEntries.push(newObj);
 
   $entriesUl.prepend(addEntry(newObj));
-  console.log(addEntry(newObj));
 
   $form.reset();
 
@@ -200,8 +199,6 @@ $entriesUl.addEventListener('click', function (e) {
 //   </div>
 // </div>
 
-var $viewTitle = document.querySelector('.recipe-view');
-var $imgView = document.querySelector('.img-view');
 var $nutrFactsUl = document.querySelector('.nutrition-facts');
 var $entryView = document.querySelector('#row-view-1');
 var $firstRow = document.querySelector('container-view');
@@ -222,7 +219,6 @@ function createView(entry) {
 
   for (let i = 0; i < entry.ingredients.length; i++) {
     var ingrItems = document.createTextNode(entry.ingredients[i]);
-    console.log(ingrItems);
     var ingrView = document.createElement('li');
     ingrView.appendChild(ingrItems);
     $ingrUl.appendChild(ingrView);
