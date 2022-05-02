@@ -146,26 +146,21 @@ var $viewPage = document.querySelector('.container-view');
 var $entryPage = document.querySelector('.container-entries');
 
 $entriesUl.addEventListener('click', function (e) {
+  var entryObj = {};
+  entryObj.ingredients = [];
   for (let i = 0; i < dataEntries.length; i++) {
     if (e.path[1].children[0].innerText === dataEntries[i].title) {
-      console.log(dataEntries[i].title);
-      console.log(dataEntries[i].entryId);
+      // console.log(dataEntries[i]);
+      entryObj.title = dataEntries[i].title;
+      entryObj.img = dataEntries[i].url;
+      for (let i = 0; i < dataEntries[i].ingredients.length; i++) {
+        entryObj.ingredients.push(dataEntries[i].ingredients[i]);
+        console.log(entryObj.ingredients);
+      }
     }
   }
-  // console.log(e);
-  // console.log(e.path[0]);
-  // console.log(e.path[1].children);
-  var entryTitle = e.path[1].children[0].innerText;
-  var entryImg = e.path[1].children[1].getAttribute('src');
 
-  // now I have to get the list data from the data.entries.ingredients storage
-  // var entryList =
-
-  var entryObj = {};
-
-  entryObj.title = entryTitle;
-  entryObj.img = entryImg;
-
+  console.log(entryObj);
   createView(entryObj);
 
   if ($viewForm === 'hidden' && $viewEntries === 'hidden') {
@@ -211,6 +206,7 @@ var $imgView = document.querySelector('.img-view');
 var $nutrFactsUl = document.querySelector('.nutrition-facts');
 var $entryView = document.querySelector('#row-view-1');
 var $firstRow = document.querySelector('container-view');
+var $ingrLi = document.querySelector('.ingredients-view');
 
 function createView(entry) {
   var titleView = document.createElement('h1');
@@ -225,5 +221,12 @@ function createView(entry) {
 
   titleView.appendChild(titleViewCont);
   $entryView.prepend(titleView);
+
+  for (let i = 0; i < entry.ingredients.length; i++) {
+    $ingrLi.appendChild(entry.ingredients[i]);
+
+  }
+  $nutrFactsUl.appendChild($ingrLi);
+
 }
 // fuck, the next entry PREPENDS the next clicked entry too... i could use splice
